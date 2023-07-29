@@ -13,7 +13,7 @@
 # 사용 라이브러리 목록
 
 - React Router
-- HTTP Client 라이브러리 (Axios 등)
-- 스타일링 관련 라이브러리 (Sass, Styled Components, Emotion, tailwind 등)
-- 아이콘 등 UI 관련 라이브러리(Font-Awesome, React-Icons, Bootstrap 등)
-- 기능과 직접적인 연관이 없는 설정 관련 라이브러리(craco, dotenv, typescript, testing library 등)
+- HTTP Client 라이브러리 (Axios)
+- 스타일링 관련 라이브러리 (Styled Components)
+- 아이콘 등 UI 관련 라이브러리(React-Icons)
+- 기능과 직접적인 연관이 없는 설정 관련 라이브러리(typescript)
