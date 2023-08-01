@@ -1,7 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Signup() {
+function SignUp() {
+  const BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>('');
@@ -26,10 +29,27 @@ function Signup() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // signup 로직
+    if (isEmailValid && isPasswordValid) {
+      // signup 로직
+      axios({
+        url: `${BASE_URL}/auth/signup`,
+        method: 'POST',
+        withCredentials: true,
+        data: {
+          email: email,
+          password: password,
+        },
+      })
+        .then((result) => {
+          if (result.status === 200) {
+            console.log('Signup success!!');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    // signup 성공 시, signin 페이지로 이동
-    if (true) {
+      // signup 성공 시, signin 페이지로 이동
       navigate(`/signin`);
     }
   };
@@ -59,4 +79,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default SignUp;
