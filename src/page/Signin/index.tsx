@@ -1,7 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Signin() {
+function SignIn() {
+  const BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>('');
@@ -26,10 +29,28 @@ function Signin() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // 로그인 로직
+    if (isEmailValid && isPasswordValid) {
+      // 로그인 로직(Authentication)
+      axios({
+        url: `${BASE_URL}/auth/signin`,
+        method: 'POST',
+        withCredentials: true,
+        data: {
+          email: email,
+          password: password,
+        },
+      })
+        .then((result) => {
+          if (result.status === 200) {
+            localStorage.setItem('access_token', result.data.token);
+            console.log('signin success!!');
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    // 로그인 성공 시, todos 페이지로 이동
-    if (true) {
+      // 로그인 성공 시, todo 페이지로 이동
       navigate(`/todo`);
     }
   };
@@ -59,4 +80,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default SignIn;
