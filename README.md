@@ -4,7 +4,37 @@
 
 # 프로젝트 실행 방법
 
--
+- AWS E2 가상 서버 주소 : http://3.39.150.77/
+- `/` : 기본 페이지로서, 로그인 페이지
+- `/signup` : 회원가입 페이지
+- `/signin` : 로그인 페이지
+- `/todo` : todo list 페이지
+
+- 회원가입 페이지에서 원하는 이메일과 비밀번호를 입력하고, 회원가입 버튼을 눌러주세요.
+
+  - 이메일 예시 : `name@gmail.com`
+  - 비밀번호 예시 : `name1234`
+  - 로그인 페이지로 자동으로 이동합니다.
+
+- 로그인 페이지에서 앞서 입력한 이메일과 비밀번호를 입력하고, 로그인 버튼을 눌러주세요.
+
+  - 이메일 예시 : `name@gmail.com`
+  - 비밀번호 예시 : `name1234`
+  - 개발자 도구 > application에서 access_token이라는 key로 'access token' value가 정상적으로 들어갑니다.
+  - todo list 페이지로 자동으로 이동합니다.
+
+- todo list 페이지에서 input창에 필요한 todo를 입력하고, 추가 버튼을 눌러주세요.
+
+  - todo 예시 : `운동하기`
+  - 입력한 todo가 input창 하단에 렌더링됩니다.
+  - 입력한 todo가 개발자 도구 > application에서 todoItems라는 key로 value가 정상적으로 추가됩니다.
+
+- todo list 페이지에서 만들어진 todo의 수정 버튼을 눌러 todo 내용을 수정하고, 제출 버튼을 눌러주세요.
+  - 수정한 todo가 input창 하단에 렌더링됩니다.
+  - 수정한 todo가 개발자 도구 > application에서 todoItems라는 key로 value가 정상적으로 수정됩니다.
+- todo list 페이지에서 만들어진 todo의 수정 버튼을 눌러 todo 내용을 수정하고, 취소 버튼을 눌러주세요.
+  - 수정하기 전 todo가 input창 하단에 렌더링됩니다.
+  - 수정하기 전 todo가 개발자 도구 > application에서 todoItems라는 key로 value가 정상적으로 보여집니다.
 
 # 데모 영상 (또는 배포 링크)
 
