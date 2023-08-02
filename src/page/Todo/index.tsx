@@ -1,5 +1,5 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
 
 interface TodoProps {
   userId: number;
@@ -7,18 +7,23 @@ interface TodoProps {
   isCompleted: boolean;
 }
 
-function Todo() {
-  const BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
+interface TodoArrProps extends Array<TodoProps> {}
 
+function Todo() {
+  const BASE_URL = "https://www.pre-onboarding-selection-task.shop";
+  const access_token = localStorage.getItem("access_token");
+  
   const [todos, setTodos] = useState<TodoProps[]>([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [isModify, setIsModify] = useState<boolean>(false);
-
+  
+  let todoArr: TodoArrProps = [];
+  
   const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
+  
   const createTodo = () => {
     const newTodo: TodoProps = {
       userId: todos.length + 1,
@@ -26,15 +31,19 @@ function Todo() {
       isCompleted: isChecked,
     };
     setTodos([...todos, newTodo]);
-    setInputValue('');
-
+    setInputValue("");
+  
+    console.log('todoArr: ', todoArr)
+    todoArr.push(newTodo)
+    localStorage.setItem('todoItems', JSON.stringify(todoArr))
+    
     axios({
       url: `${BASE_URL}/todos`,
-      method: 'POST',
+      method: "POST",
       withCredentials: true,
       headers: {
-        // Authorization: `Bearer ${access_token}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "application/json",
       },
       data: {
         todo: inputValue,
@@ -42,29 +51,32 @@ function Todo() {
     })
       .then((result) => {
         if (result.status === 201) {
-          console.log('Created Todo Data!!');
+          console.log("Created Todo Data!!");
         }
       })
       .catch((error) => {
         console.log(error);
       });
+
+      
   };
 
   const deleteTodo = (id: number) => {
     const updatedTodos = todos.filter((todo) => todo.userId !== id);
     setTodos(updatedTodos);
+    localStorage.setItem('todoItems', JSON.stringify(updatedTodos))
 
     axios({
       url: `${BASE_URL}/todos/:${id}`,
-      method: 'DELETE',
+      method: "DELETE",
       withCredentials: true,
       headers: {
-        // Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${access_token}`,
       },
     })
       .then((result) => {
         if (result.status === 204) {
-          console.log('delete Todo Data!!');
+          console.log("delete Todo Data!!");
         }
       })
       .catch((error) => {
@@ -75,11 +87,11 @@ function Todo() {
   const updateTodo = (id: number, todo: string, isChecked: boolean) => {
     axios({
       url: `${BASE_URL}/todos/:${id}`,
-      method: 'PUT',
+      method: "PUT",
       withCredentials: true,
       headers: {
-        // Authorization: `Bearer ${access_token}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${access_token}`,
+        "Content-Type": "application/json",
       },
       data: {
         todo: todo,
@@ -88,7 +100,7 @@ function Todo() {
     })
       .then((result) => {
         if (result.status === 200) {
-          console.log('update Todo Data!!');
+          console.log("update Todo Data!!");
         }
       })
       .catch((error) => {
