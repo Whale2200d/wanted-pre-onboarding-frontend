@@ -1,20 +1,20 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
-  const BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
+  const BASE_URL = "https://www.pre-onboarding-selection-task.shop";
 
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
   const [isPasswordValid, setisPasswordValid] = useState<boolean>(false);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const email = e.target.value;
-    const isEmailValid = email.includes('@');
+    const isEmailValid = email.includes("@");
     setEmail(email);
     setIsEmailValid(isEmailValid);
   };
@@ -33,7 +33,7 @@ function SignUp() {
       // signup 로직
       axios({
         url: `${BASE_URL}/auth/signup`,
-        method: 'POST',
+        method: "POST",
         withCredentials: true,
         data: {
           email: email,
@@ -42,15 +42,14 @@ function SignUp() {
       })
         .then((result) => {
           if (result.status === 200) {
-            console.log('Signup success!!');
+            console.log("Signup success!!");
+            // signup 성공 시, signin 페이지로 이동
+            navigate(`/signin`);
           }
         })
         .catch((error) => {
           console.log(error);
         });
-
-      // signup 성공 시, signin 페이지로 이동
-      navigate(`/signin`);
     }
   };
 
