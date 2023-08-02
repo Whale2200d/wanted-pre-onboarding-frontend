@@ -40,18 +40,17 @@ function SignIn() {
           password: password,
         },
       })
-        .then((result) => {
-          if (result.status === 200) {
-            localStorage.setItem('access_token', result.data.token);
+        .then((response) => {
+          if (response.status === 200) {
+            localStorage.setItem('access_token', response.data.token);
             console.log('signin success!!');
+            // 로그인 성공 시, todo 페이지로 이동
+            navigate(`/todo`);
           }
         })
         .catch((error) => {
           console.log(error);
         });
-
-      // 로그인 성공 시, todo 페이지로 이동
-      navigate(`/todo`);
     }
   };
 
