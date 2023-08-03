@@ -82,7 +82,7 @@
   - TODO 추가 button에는 `data-testid="new-todo-add-button"` 속성을 부여해주세요 :white_check_mark:
 
 - 추가 button을 클릭하면 입력 input의 내용이 새로운 TODO로 추가되도록 해주세요 :white_check_mark:
-- TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다.
+- TODO를 추가 한 뒤 새로고침을 해도 추가한 TODO가 목록에 보여야 합니다. :white_check_mark:
 
 #### Assignment 7
 

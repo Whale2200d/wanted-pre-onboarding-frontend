@@ -10,8 +10,9 @@ interface TodoProps {
 function Todo() {
   const BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
   const access_token = localStorage.getItem('access_token');
+  const storedTodos = localStorage.getItem('todoItems');
 
-  const [todos, setTodos] = useState<TodoProps[]>([]);
+  const [todos, setTodos] = useState<TodoProps[]>(storedTodos ? JSON.parse(storedTodos) : []);
   const [inputValue, setInputValue] = useState('');
   const [updatingIndex, setUpdatingIndex] = useState<number>(-1);
   const [updatingValue, setUpdatingValue] = useState<string>('');
@@ -27,7 +28,6 @@ function Todo() {
 
   // 페이지가 로드될 때마다, localStorage에서 Todo를 가져오기
   useEffect(() => {
-    const storedTodos = localStorage.getItem('todoItems');
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
       console.log('JSON.parse(storedTodos): ', JSON.parse(storedTodos));
