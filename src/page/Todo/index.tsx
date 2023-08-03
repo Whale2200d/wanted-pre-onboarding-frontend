@@ -8,11 +8,13 @@ interface TodoProps {
 }
 
 function Todo() {
-  const BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
+  const BASE_URL = '';
   const access_token = localStorage.getItem('access_token');
   const storedTodos = localStorage.getItem('todoItems');
 
-  const [todos, setTodos] = useState<TodoProps[]>(storedTodos ? JSON.parse(storedTodos) : []);
+  const [todos, setTodos] = useState<TodoProps[]>(
+    storedTodos ? JSON.parse(storedTodos) : []
+  );
   const [inputValue, setInputValue] = useState('');
   const [updatingIndex, setUpdatingIndex] = useState<number>(-1);
   const [updatingValue, setUpdatingValue] = useState<string>('');
