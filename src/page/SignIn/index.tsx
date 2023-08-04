@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
-  const BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
+  const BASE_URL = '';
 
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ function SignIn() {
       })
         .then((response) => {
           if (response.status === 200) {
-            localStorage.setItem('access_token', response.data.token);
+            localStorage.setItem('access_token', response.data.access_token);
             console.log('signin success!!');
             // 로그인 성공 시, todo 페이지로 이동
             navigate(`/todo`);
